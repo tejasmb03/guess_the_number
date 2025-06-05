@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1a2f4e;
+  color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  user-select: none;
+  transition: background 0.4s, color 0.4s;
+}
+
+.theme-switcher {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  z-index: 10;
+}
+
+.theme-emoji {
+  font-size: 1.7rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s;
+  display: inline-block;
+}
+.theme-emoji:hover {
+  transform: scale(1.15) rotate(-10deg);
+}
+
+.main-title {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 48px;
+  letter-spacing: 0.5px;
+  transition: color 0.4s;
+}
+
+.container {
+  background: #ffffff;
+  width: 360px;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.18);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transition: box-shadow 0.3s, background 0.4s, color 0.4s;
+}
+
+.container:hover {
+  box-shadow: 0 8px 28px rgba(44, 62, 80, 0.25);
+}
+
+h2 {
+  color: #183548;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  transition: color 0.4s;
+}
+
+input[type="number"], select, .difficulty-select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1.08rem;
+  border-radius: 8px;
+  border: 1.5px solid #bdc3c7;
+  outline: none;
+  color: #34495e;
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 0;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.4s, color 0.4s;
+  background: #f8fafc;
+}
+
+input[type="number"]::placeholder {
+  color: #95a5a6;
+  transition: color 0.4s;
+}
+
+input[type="number"]:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 8px rgba(41, 128, 185, 0.18);
+}
+
+button {
+  background-color: #183548;
+  color: #fff;
+  padding: 13px 0;
+  font-weight: 700;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 0;
+  box-shadow: 0 2px 8px rgba(41, 128, 185, 0.13);
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.4s;
+}
+
+button + button {
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #1f6391;
+  box-shadow: 0 6px 18px rgba(31, 99, 145, 0.18);
+}
+
+button:active {
+  background-color: #17608e;
+  box-shadow: 0 3px 9px rgba(23, 96, 142, 0.18);
+}
+
+#result {
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 1.13rem;
+  min-height: 40px;
+  color: #34495e;
+  user-select: text;
+  transition: color 0.3s;
+}
+
+#result.correct { color: #27ae60; }
+#result.wrong { color: #c0392b; }
+#result.gameover { color: #e67e22; }
+
+.stats-box {
+  background: #f0f4f8;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #223366;
+  transition: background 0.4s, color 0.4s;
+}
+
+#timer {
+  color: #1a2f4e;
+  font-weight: 700;
+  margin: 10px 0;
+  transition: color 0.4s;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .container {
+    width: 96vw;
+    padding: 28px 10px;
+  }
+  .main-title {
+    font-size: 1.3rem;
+    margin-bottom: 28px;
+  }
+}
+
+/* --- DARK THEME OVERRIDES --- */
+body.dark-theme {
+  background-color: #111b2c;
+  color: #f0f0f0;
+}
+
+body.dark-theme .main-title {
+  color: #f0f0f0;
+}
+
+body.dark-theme .container {
+  background: #1a2f4e;
+  color: #f0f0f0;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.10);
+}
+
+body.dark-theme h2 {
+  color: #e0e6f0;
+}
+
+body.dark-theme input[type="number"],
+body.dark-theme select,
+body.dark-theme .difficulty-select {
+  background: #25385a;
+  color: #f0f0f0;
+  border: 1.5px solid #3a4d6d;
+}
+
+body.dark-theme input[type="number"]::placeholder {
+  color: #b0b6be;
+}
+
+body.dark-theme input[type="number"]:focus {
+  border-color: #6cb6ff;
+  box-shadow: 0 0 8px rgba(108, 182, 255, 0.3);
+}
+
+body.dark-theme button {
+  background-color: #29405e;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(108, 182, 255, 0.13);
+}
+
+body.dark-theme button:hover {
+  background-color: #3266a8;
+  box-shadow: 0 6px 18px rgba(108, 182, 255, 0.18);
+}
+
+body.dark-theme button:active {
+  background-color: #29405e;
+}
+
+body.dark-theme .stats-box {
+  background: #223366;
+  color: #f0f0f0;
+}
+
+body.dark-theme #timer {
+  color: #8ec6ff;
+}
+
+body.dark-theme #result {
+  color: #f0f0f0;
+}
+
+body.dark-theme #result.correct { color: #6aff7a; }
+body.dark-theme #result.wrong { color: #ff7a6a; }
+body.dark-theme #result.gameover { color: #ffa94d; }
+
+body.dark-theme .theme-switcher {
+  color: #f0f0f0;
+}

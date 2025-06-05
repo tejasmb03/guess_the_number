@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎯 Guess the Number</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="theme-switcher">
+    <span id="theme-toggle" class="theme-emoji" title="Toggle dark mode">🌙</span>
+  </div>
+  <div class="main-title">The Game of Guessing</div>
+  <div class="container">
+    <h2>🎯 Guess the Number</h2>
+    <select id="difficulty" class="difficulty-select">
+      <option value="easy">Easy (1-10)</option>
+      <option value="medium">Medium (1-50)</option>
+      <option value="hard">Hard (1-100)</option>
+      <option value="expert">Expert (1-500)</option>
+    </select>
+    <button onclick="startGame()">Start New Game</button>
+    <div id="timer"></div>
+    <input type="number" id="guess" placeholder="Enter guess">
+    <button onclick="sendGuess()">Submit Guess</button>
+    <div id="stats" class="stats-box"></div>
+    <p id="result"></p>
+  </div>
+  <script>
+    // Theme toggle using emoji
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', function() {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // On page load, apply saved theme
+    window.onload = function() {
+      const isDark = localStorage.getItem('theme') === 'dark';
+      if (isDark) {
+        document.body.classList.add('dark-theme');
+        themeToggle.textContent = '☀️';
+      }
+      // Optionally, you can initialize stats here
+      document.getElementById('stats').innerHTML = `
+        Wins: 0 | Losses: 0<br>
+        Streak: 0 | Best: 0
+      `;
+    };
+
+    // Dummy functions for demonstration
+    let countdownInterval;
+    function startGame() {
+      document.getElementById('result').innerHTML = "🎮 Game started!<br>Range: 1-10<br>Chances: 5";
+      document.getElementById('guess').value = "";
+      updateTimer(true);
+    }
+    function updateTimer(reset = false) {
+      const timerElem = document.getElementById('timer');
+      if (reset) {
+        clearInterval(countdownInterval);
+        let seconds = 0;
+        countdownInterval = setInterval(() => {
+          timerElem.textContent = `⏱ ${++seconds}s`;
+        }, 1000);
+      }
+    }
+    function sendGuess() {
+      document.getElementById('result').innerHTML = "❌ Wrong! Try again.";
+      // Update stats for demonstration
+      document.getElementById('stats').innerHTML = `
+        Wins: 0 | Losses: 1<br>
+        Streak: 0 | Best: 0
+      `;
+    }
+  </script>
+</body>
+</html>
